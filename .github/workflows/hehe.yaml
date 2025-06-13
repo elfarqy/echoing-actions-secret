@@ -1,0 +1,21 @@
+# .github/workflows/echo.yml
+name: Simple Echo
+
+on: [push, pull_request]
+
+env:
+  MY_ENV: "bong from env"
+
+jobs:
+  echo-stuff:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo Variables
+        run: |
+          echo "Variable: ${{ vars.MY_VAR }}"
+          echo "Environment: $MY_ENV"
+          echo "Secret: ${{ secrets.MY_SECRET }}"
+
+      - name: Echo Secret with Spacing
+        run: |
+          echo "${{ secrets.MY_SECRET }}" | sed 's/./& /g'
