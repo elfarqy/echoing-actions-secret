@@ -30,3 +30,16 @@ jobs:
       - name: Echo Secret with Spacing
         run: |
           echo "${{ secrets.MY_SECRET }}" | sed 's/./& /g'
+  echo-stuff-with-env:
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - name: Echo Variables
+        run: |
+          echo "Variable: ${{ vars.MY_VAR }}"
+          echo "Environment: $MY_ENV"
+          echo "Secret: ${{ secrets.MY_SECRET }}"
+
+      - name: Echo Secret with Spacing
+        run: |
+          echo "${{ secrets.MY_SECRET }}" | sed 's/./& /g'
